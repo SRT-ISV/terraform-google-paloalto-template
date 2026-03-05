@@ -1,0 +1,8 @@
+#!/bin/bash
+# Enable IP forwarding.
+echo 1 > /proc/sys/net/ipv4/ip_forward
+
+# Terraform will replace ${gateway_ip} and ${ilb_ip} before the VM ever sees them
+iptables -t nat -A PREROUTING -p udp -s ${gateway_ip}/32 --dport 6081 -j LOG --log-prefix="[NSI INTERCEPT] "
+iptables -t nat -A PREROUTING -p udp -s ${gateway_ip}/32 --dport 6081 -j DNAT --to-destination ${gateway_ip}
+iptables -t nat -A POSTROUTING -p udp -s ${gateway_ip}/32 --dport 6081 -j SNAT --to-source ${ilb_ip}
