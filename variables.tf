@@ -29,18 +29,18 @@ variable "template_name" {
 variable "subnetwork_self_link" {
   type        = string
   description = "Subnetwork name"
-  default     = ""
+  default     = "" 
 }
 
 variable "ilb_ip" {
   type        = string
   description = "IP reserved for Internal Load Balancer"
-  default     = "10.128.0.10"
+  default     = "" 
 }
 
 variable "project_id" {
   type = string
-  default = ""
+  default = "" 
 }
 
 variable "region" {

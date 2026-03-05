@@ -1,0 +1,50 @@
+# Copyright 2026 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: terraform-google-paloalto-template-display
+  annotations:
+    config.kubernetes.io/local-config: "true"
+spec:
+  info:
+    title: terraform-google-paloalto-template
+    source:
+      repo: https://github.com/SRT-ISV/terraform-google-paloalto-template.git
+      sourceType: git
+  ui:
+    input:
+      variables:
+        ilb_ip:
+          name: ilb_ip
+          title: Ilb Ip
+        name_prefix:
+          name: name_prefix
+          title: Name Prefix
+        project_id:
+          name: project_id
+          title: Project Id
+        region:
+          name: region
+          title: Region
+        subnetwork_self_link:
+          name: subnetwork_self_link
+          title: Subnetwork Self Link
+        template_name:
+          name: template_name
+          title: Template Name
+        zone:
+          name: zone
+          title: Zone

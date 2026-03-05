@@ -40,7 +40,8 @@ module "paloalto_template" {
   version = "~> 0.1"
 
   project_id  = "<PROJECT ID>"
-  bucket_name = "gcs-test-bucket"
+  subnetwork_self_link = "<SUBNET SELF LINK>"
+  ilb = "<INTERNAL LOAD BLANACER RESEREV IP>"
 }
 ```
 
@@ -52,14 +53,21 @@ Functional examples are included in the
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| bucket\_name | The name of the bucket to create | `string` | n/a | yes |
-| project\_id | The project ID to deploy to | `string` | n/a | yes |
+| ilb\_ip | IP reserved for Internal Load Balancer | `string` | `""` | yes |
+| name\_prefix | Prefix for the resource names. | `string` | `"pa"` | no |
+| project\_id | n/a | `string` | `""` | yes |
+| region | n/a | `string` | `"us-central1"` | no |
+| subnetwork\_self\_link | Subnetwork name | `string` | `""` | yes |
+| template\_name | Template name | `string` | `"t1"` | no |
+| zone | For GCE staging, use the GCE zone and the CCFE zone will be inferred. | `string` | `"us-central1-a"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| bucket\_name | Name of the bucket |
+| gateway\_ip | IP of the gateway template |
+| template\_id | ID of the instance template |
+| template\_self\_link | Self link of the instance template |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
@@ -71,15 +79,16 @@ These sections describe requirements for using this module.
 
 The following dependencies must be available:
 
-- [Terraform][terraform] v0.13
-- [Terraform Provider for GCP][terraform-provider-gcp] plugin v3.0
+- [Terraform][terraform] v1.3
+- [Terraform Provider for GCP][terraform-provider-gcp] plugin v5.41
 
 ### Service Account
 
 A service account with the following roles must be used to provision
 the resources of this module:
 
-- Storage Admin: `roles/storage.admin`
+- Compute Instance Admin: `roles/compute.instanceAdmin.v1`
+- Service Account User: `roles/iam.serviceAccountUser`
 
 The [Project Factory module][project-factory-module] and the
 [IAM module][iam-module] may be used in combination to provision a
@@ -90,7 +99,7 @@ service account with the necessary roles applied.
 A project with the following APIs enabled must be used to host the
 resources of this module:
 
-- Google Cloud Storage JSON API: `storage-api.googleapis.com`
+- Compute Engine API: `compute.googleapis.com`
 
 The [Project Factory module][project-factory-module] can be used to
 provision a project with the necessary APIs enabled.

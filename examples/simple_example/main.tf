@@ -15,8 +15,14 @@
  */
 
 module "paloalto_template" {
-  source = "../.."
 
-  project_id  = var.project_id
-  bucket_name = var.bucket_name
+source = "./modules/template"
+name_prefix = var.name_prefix
+template_name = var.template_name
+project_id = var.project_id
+region = var.region
+zone = var.zone
+subnetwork_self_link = var.subnetwork_self_link
+ilb_ip  = var.ilb_ip
+
 }

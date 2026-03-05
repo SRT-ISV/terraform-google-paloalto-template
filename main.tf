@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-module "template" {
+module "paloalto_template" {
 
 source = "./modules/template"
 name_prefix = var.name_prefix

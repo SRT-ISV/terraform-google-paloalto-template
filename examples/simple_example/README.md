@@ -7,14 +7,21 @@ This example illustrates how to use the `paloalto-template` module.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| bucket\_name | The name of the bucket to create. | `string` | n/a | yes |
-| project\_id | The ID of the project in which to provision resources. | `string` | n/a | yes |
+| ilb\_ip | IP reserved for Internal Load Balancer | `string` | `"10.128.0.10"` | no |
+| name\_prefix | Prefix for the resource names. | `string` | `"pa"` | no |
+| project\_id | n/a | `string` | `""` | no |
+| region | n/a | `string` | `"us-central1"` | no |
+| subnetwork\_self\_link | Subnetwork name | `string` | `""` | no |
+| template\_name | Template name | `string` | `"t1"` | no |
+| zone | For GCE staging, use the GCE zone and the CCFE zone will be inferred. | `string` | `"us-central1-a"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| bucket\_name | The name of the bucket. |
+| gateway\_ip | IP of the gateway template |
+| template\_id | ID of the instance template |
+| template\_self\_link | Self link of the instance template |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

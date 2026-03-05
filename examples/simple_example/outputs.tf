@@ -14,7 +14,17 @@
  * limitations under the License.
  */
 
-output "bucket_name" {
-  description = "The name of the bucket."
-  value       = module.paloalto_template.bucket_name
+output "template_self_link" {
+  description = "Self link of the instance template"
+  value       = module.paloalto_template.template_self_link
+}
+
+output "template_id" {
+  description = "ID of the instance template"
+  value       = module.paloalto_template.template_id
+}
+
+output "gateway_ip" {
+  description = "IP of the gateway template"
+  value       = module.paloalto_template.gateway_ip
 }

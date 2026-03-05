@@ -16,15 +16,15 @@
 
 output "template_self_link" {
   description = "Self link of the instance template"
-  value       = module.template.template_self_link
+  value       = module.paloalto_template.template_self_link
 }
 
 output "template_id" {
   description = "ID of the instance template"
-  value       = module.template.template_id
+  value       = module.paloalto_template.template_id
 }
 
 output "gateway_ip" {
   description = "IP of the gateway template"
-  value       = module.template.gateway_ip
+  value       = module.paloalto_template.gateway_ip
 }
