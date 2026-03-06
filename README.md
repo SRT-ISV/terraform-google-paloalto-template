@@ -37,7 +37,7 @@ Basic usage of this module is as follows:
 ```hcl
 module "paloalto_template" {
   source  = "terraform-google-modules/paloalto-template/google"
-  version = "~> 0.1"
+  version = "~> 1.0"
 
   project_id  = "<PROJECT ID>"
   subnetwork_self_link = "<SUBNET SELF LINK>"
