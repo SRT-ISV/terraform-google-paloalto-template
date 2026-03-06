@@ -28,9 +28,9 @@ terraform {
   }
 
    provider_meta "google" {
-    module_name = "blueprints/terraform/paloalto-template/v0.0.1"
+    module_name = "blueprints/terraform/paloalto-template/v1.0.0"
   }
    provider_meta "google-beta" {
-    module_name = "blueprints/terraform/paloalto-template/v0.0.1"
+    module_name = "blueprints/terraform/paloalto-template/v1.0.0"
   } 
 }
