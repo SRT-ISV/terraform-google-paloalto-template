@@ -39,7 +39,7 @@ variable "ilb_ip" {
 }
 
 
-variable "project_id" {
+variable "gcp_project_id" {
   type = string
   default = ""
 }

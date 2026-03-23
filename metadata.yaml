@@ -84,7 +84,7 @@ spec:
             spec:
               outputExpr: addresses[0]
               inputPath: .
-      - name: project_id
+      - name: gcp_project_id
         varType: string
         required: true
       - name: region

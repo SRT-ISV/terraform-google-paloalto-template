@@ -18,7 +18,7 @@
 
 data "google_compute_subnetwork" "gw_ip" {
   self_link = var.subnetwork_self_link
-  project = var.project_id
+  project = var.gcp_project_id
   region = var.region
 }
 
@@ -35,7 +35,7 @@ data "template_file" "interceptor_startup_script" {
 
 resource "google_compute_instance_template" "main" {
   name  = var.template_name
-  project      = var.project_id
+  project      = var.gcp_project_id
   machine_type = "e2-micro"
   region       = var.region
 
@@ -74,7 +74,7 @@ resource "google_compute_instance_template" "main" {
 
 resource "google_compute_firewall" "fw_gateway_ip" {
   name    = "pa-gw-${var.template_name}"
-  project = var.project_id
+  project = var.gcp_project_id
   network = data.google_compute_subnetwork.gw_ip.network
 
 

@@ -19,7 +19,7 @@ module "paloalto_template" {
 source = "./modules/template"
 name_prefix = var.name_prefix
 template_name = var.template_name
-project_id = var.project_id
+gcp_project_id = var.gcp_project_id
 region = var.region
 zone = var.zone
 subnetwork_self_link = var.subnetwork_self_link
