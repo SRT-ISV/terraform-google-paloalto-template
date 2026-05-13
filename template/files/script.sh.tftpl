@@ -2,7 +2,13 @@
 # Enable IP forwarding.
 echo 1 > /proc/sys/net/ipv4/ip_forward
 
-# Terraform will replace ${gateway_ip} and ${ilb_ip} before the VM ever sees them
+# Terraform will replace ${gateway_ip} and ${ilb_ip}
+# Log incoming packets from the gateway IP and the GENEVE 6081 port.
 iptables -t nat -A PREROUTING -p udp -s ${gateway_ip}/32 --dport 6081 -j LOG --log-prefix="[NSI INTERCEPT] "
+# Apply DNAT (Destination NAT) on incoming packets from the gateway IP and the GENEVE 6081 port.
+# Set the destination IP to the gateway IP so the packet is re-routed back to the sender.
 iptables -t nat -A PREROUTING -p udp -s ${gateway_ip}/32 --dport 6081 -j DNAT --to-destination ${gateway_ip}
+# Set the source IP to the ILB IP which effectively swaps the IPs of the original packet.
 iptables -t nat -A POSTROUTING -p udp -s ${gateway_ip}/32 --dport 6081 -j SNAT --to-source ${ilb_ip}
+# Spin up a simple server for health checks on port 80.
+nohup python3 -u -m http.server 80 &
